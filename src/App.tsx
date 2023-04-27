@@ -1,71 +1,35 @@
-import { useState } from 'react'
+import { useState, useReducer } from 'react'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { State, Action } from './types.d';
-
-const initialState: State = {
-  fromLanguage: 'auto',
-  toLanguage: 'en',
-  fromText: '',
-  result: '',
-  loading: false
-}
-
-function reducer (state: State, action: Action){
-  const {type} = action
-
-  switch (type) {
-    case 'INTERCHANGE_LANGUAGES':
-      return {
-        ...state,
-        fromLanguage: state.toLanguage,
-        toLanguage: state.fromLanguage
-      }
-
-    case 'SET_FROM_LANGUAGE':
-      return {
-        ...state,
-        loading: true,
-        fromLanguage: action.payload
-      }
-
-    case 'SET_TO_LANGUAGE':
-      return {
-        ...state,
-        loading: true,
-        toLanguage: action.payload
-      }
-
-    case 'SET_FROM_TEXT' :
-      return {
-        ...state,
-        loading: true,
-        fromText: action.payload,
-        result: ''
-      }
-
-    case 'SET_RESULT' :
-      return {
-        ...state,
-        result: action.payload,
-        loading: false
-      }
- 
-  
-    default:
-      return state;
-  }
-}
-
-
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import {useStore} from './hooks/useStore'
+import { AUTO_LANGUAGE } from './constants';
+import { ArrowsIcon } from './components/icons';
+import { LanguageSelector } from './components/LanguageSelector';
 
 function App() {
 
+ const {fromLanguage, setFromLanguage, setToLanguage, toLanguage, interchangeLanguages} = useStore()
+
 
   return (
-    <div className="App">
+    <Container fluid>
       <h1>Google translate</h1>
-    </div>
+      <Row>
+        <Col>
+        <LanguageSelector onChange={setFromLanguage}/>
+        </Col>
+        <Col>      
+        <Button variant="link" disabled={fromLanguage === AUTO_LANGUAGE} onClick={interchangeLanguages} >
+          <ArrowsIcon/>
+        </Button>
+        </Col>
+         
+        <Col>
+        <LanguageSelector onChange={setToLanguage}/>
+        </Col>
+      </Row>
+    </Container>
   )
 }
 
