@@ -2,11 +2,8 @@ import { ChatCompletionRequestMessageRoleEnum, Configuration, OpenAIApi } from '
 import { SUPPORTED_LANGUAGES } from '../constants'
 import { type FromLanguage, type Language } from '../types'
 
-// NO PUBLIQUES ESTO O SE COLARÁ TU API KEY EN EL CLIENTE
-// ESTO LO HACEMOS PORQUE NOS ESTAMOS ENFOCANDO EN ESTE CURSO
-// EN REACT y TYPESCRIPT
-// DEBES CREAR UNA API PARA ESTO
-const apiKey = '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'
+
+const apiKey = import .meta.env.VITE_OPENAI_API_KEY
 
 const configuration = new Configuration({ apiKey })
 const openai = new OpenAIApi(configuration)
@@ -52,7 +49,7 @@ export async function translate ({
       content: 'Buenos días, ¿cómo estás?'
     }
   ]
-
+  console.log('hola');
   const fromCode = fromLanguage === 'auto' ? 'auto' : SUPPORTED_LANGUAGES[fromLanguage]
   const toCode = SUPPORTED_LANGUAGES[toLanguage]
   const headers = {
@@ -68,6 +65,8 @@ export async function translate ({
       }
     ]
   })
+
+  
   
   
   return completion.data.choices[0]?.message?.content
