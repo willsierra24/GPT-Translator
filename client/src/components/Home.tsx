@@ -21,11 +21,11 @@ const useStyles = createStyles((theme) => ({
   root: {
     backgroundColor: '#11284b',
     backgroundSize: 'cover',
-    backgroundPosition: 'center',
+    backgroundPosition: '',
     backgroundImage:
       ' url(src/assets/Background.jpg)',
     paddingTop: `calc(${theme.spacing.xl} )`,
-    paddingBottom: `calc(${theme.spacing.xl} )`,
+    paddingBottom: `calc(${theme.spacing.xl})`,
   },
 
   inner: {
@@ -70,7 +70,7 @@ const useStyles = createStyles((theme) => ({
 
   description: {
     color: theme.white,
-    opacity: 0.75,
+    opacity: 1,
     maxWidth: rem(500),
 
     [theme.fn.smallerThan('md')]: {
@@ -137,7 +137,6 @@ function Home () {
 
   return (
     <>
-    <div>
     <div className={classes.root}>
       <Container size="lg">
       <Title className={classes.title}>
@@ -248,7 +247,7 @@ function Home () {
     </div>
 
 
-    </div>
+    
     
   </> 
     
