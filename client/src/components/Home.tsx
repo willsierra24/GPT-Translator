@@ -23,7 +23,7 @@ const useStyles = createStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundPosition: '',
     backgroundImage:
-      ' url(src/assets/Background.jpg)',
+      ' url(https://u-static.fotor.com/images/text-to-image/result/PRO-24b857ee2efb4b02ba1ae511dc40a491.jpg)',
     paddingTop: `calc(${theme.spacing.xl} )`,
     paddingBottom: `calc(${theme.spacing.xl})`,
   },
